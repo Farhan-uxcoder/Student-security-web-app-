@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Student Dashboard</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body{
+            background: #eef0ff;
+            overflow-x: hidden;
+            transition: 0.3s;
+            animation: fadeInBody 1s ease-in-out;
+        }
+
+        @keyframes fadeInBody {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .container{
+            display: flex;
+        }
+
+        /* SIDEBAR */
+        .sidebar{
+            width: 260px;
+            background: #4a4aff;
+            color: white;
+            height: 100vh;
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            transform: translateX(-50px);
+            opacity: 0;
+            animation: slideIn 0.9s ease forwards;
+        }
+
+        @keyframes slideIn {
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .logo{
+            font-size: 26px;
+            font-weight: 600;
+            margin-bottom: 40px;
+        }
+
+        .logo span{
+            color: #ffd966;
+        }
+
+        .sidebar ul li{
+            list-style: none;
+            padding: 12px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: 0.2s;
+        }
+
+        .sidebar ul li:hover,
+        .sidebar ul .active{
+            background: rgba(255,255,255,0.25);
+        }
+
+        #themeToggle{
+            margin-top: 40px;
+            padding: 10px;
+            background: #ffd966;
+            border: none;
+            width: 100%;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        #themeToggle:hover{
+            background: #ffe89e;
+        }
+
+        /* MAIN CONTENT */
+        .main{
+            flex: 1;
+            padding: 40px;
+            animation: fadeUp 1s ease-in-out;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        header h1{
+            font-size: 28px;
+        }
+
+        .stats{
+            margin-top: 30px;
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .card{
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            width: 200px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+            text-align: center;
+            transform: scale(1);
+            transition: 0.3s ease;
+            animation: popUp 0.7s ease;
+        }
+
+        .card:hover{
+            transform: scale(1.06);
+        }
+
+        @keyframes popUp {
+            from {
+                opacity: 0;
+                transform: scale(0.7);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .card p{
+            font-size: 30px;
+            margin-top: 10px;
+            color: #4a4aff;
+        }
+
+        /* NOTIFICATIONS */
+        .notification{
+            background: white;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: popIn 0.5s ease;
+        }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .notification button{
+            background: #4a4aff;
+            color: white;
+            border: none;
+            padding: 7px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .notification button:hover{
+            background: #3535cc;
+        }
+
+        /* DARK MODE */
+        body.dark{
+            background: #1b1b1b;
+            color: white;
+        }
+
+        body.dark .sidebar{
+            background: #1e1e5a;
+        }
+
+        body.dark .card,
+        body.dark .notification{
+            background: #2a2a2a;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <h2 class="logo">Student<span>Security</span></h2>
+        <ul>
+            <li class="active">🏠 Dashboard</li>
+            <li>📚 Courses</li>
+            <li>📝 Assignments</li>
+            <li>📢 Notifications</li>
+            <li>⚙ Settings</li>
+        </ul>
+        <button id="themeToggle">🌙 Dark Mode</button>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+        <header>
+            <h1>Welcome Back, Student 👋</h1>
+            <p>Here are your latest updates</p>
+        </header>
+
+        <!-- Stats -->
+        <div class="stats">
+            <div class="card">
+                <h3>Missed Notifications</h3>
+                <p id="missedCount">0</p>
+            </div>
+            <div class="card">
+                <h3>Upcoming Assignments</h3>
+                <p>3</p>
+            </div>
+            <div class="card">
+                <h3>Enrolled Courses</h3>
+                <p>5</p>
+            </div>
+        </div>
+
+        <!-- Notifications List -->
+        <section class="notifications">
+            <h2>📢 Missed Notifications</h2>
+            <div id="notifList"></div>
+        </section>
+    </main>
+</div>
+
+<!-- JAVASCRIPT -->
+<script>
+    // Sample missed notifications
+    let notifications = [
+        {id: 1, text: "Your Math Assignment deadline was yesterday."},
+        {id: 2, text: "You missed the Science quiz results announcement."},
+        {id: 3, text: "Reminder: Project submission was due today."}
+    ];
+
+    const notifList = document.getElementById("notifList");
+    const missedCount = document.getElementById("missedCount");
+
+    function loadNotifications() {
+        notifList.innerHTML = "";
+        notifications.forEach(n => {
+            const box = document.createElement("div");
+            box.className = "notification";
+            box.innerHTML = `
+                <p>${n.text}</p>
+                <button onclick="removeNotif(${n.id})">Mark as Read</button>
+            `;
+            notifList.appendChild(box);
+        });
+
+        missedCount.textContent = notifications.length;
+    }
+
+    loadNotifications();
+
+    function removeNotif(id){
+        notifications = notifications.filter(n => n.id !== id);
+        loadNotifications();
+    }
+
+    // Dark Mode Toggle
+    document.getElementById("themeToggle").addEventListener("click", () => {
+        document.body.classList.toggle("dark");
+    });
+</script>
+
+</body>
+</html>
