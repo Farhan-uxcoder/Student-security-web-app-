@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Menu Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('fr menu.jpg');
+            background-size: cover; 
+            background-repeat: no-repeat;
+            background-position: center; 
+            position: relative;
+        }
+
+        .home-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 1000%;
+            font-size: 20px;
+            text-decoration: none;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .home-button:hover {
+            transform: scale(1.1);
+            background-color: #45a049;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            flex-direction: column; /* Align vertically */
+            text-align: center;
+        }
+
+        .social-icons a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px 25px;
+            background-color: #ccc;
+            border-radius: 25px;
+            text-decoration: none;
+            color: white;
+            font-size: 18px; 
+            transition: transform 0.3s, background-color 0.3s;
+            white-space: nowrap; 
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.1);
+        }
+
+        .social-icons a.maps:hover {
+            background-color: #3b5998;
+        }
+
+        .social-icons a.emergencyContacts:hover {
+            background-color: #0ee015;
+        }
+
+        .social-icons a.alerts:hover {
+            background-color: #e4405f;
+        }
+
+        .social-icons a.complaints:hover {
+            background-color: #060606;
+        }
+    </style>
+</head>
+<body>
+    <a href="log in page.html" class="home-button">&#127968;</a>
+    <div class="social-icons">
+        <a href="the acharya map.html" class="maps">Acharya College Map</a>
+        <a href="contacts.html" class="emergencyContacts">Emergency Contacts</a>
+        <a href="Alerts.html" class="alerts">Alerts</a>
+        <a href="#" class="complaints">College Events</a>
+    </div>
+</body>
+</html>
